@@ -100,6 +100,8 @@ export default class Widget {
   createListTitle() {
     console.log(`Ширина текстового поля равна: ${this.listTitle.offsetWidth}`);
     console.log(`Число символов в первой вакансии: ${this.vacancyArrContent[0].length}`);
+    console.log(`В строку войдёт ${this.listTitle.offsetWidth / 9} символов`);
+    const simbolsCount = this.listTitle.offsetWidth / 9;
 
     if (this.vacancyArrContent.length > 3) {
       this.listTitle.textContent = 'Выбрано больше 3-х вакансий';
@@ -108,7 +110,7 @@ export default class Widget {
 
       // Добавляем пробел после запятой и удаляем запятую, если это последнее слово в строке
       this.vacancyArrContent.forEach((element) => {
-        for (let i = 0; i < element.length && i < 52 && titleVacancyArr.length < 52; i += 1) {
+        for (let i = 0; i < element.length && i < simbolsCount && titleVacancyArr.length < simbolsCount; i += 1) {
           let el = element[i];
 
           if (el === ',' && this.vacancyArrContent.indexOf(element) !== this.vacancyArrContent.length - 1) {
@@ -122,8 +124,8 @@ export default class Widget {
       });
 
       // Если в строку не помещается весь текст,
-      // добавить многоточие (52 - макс кол-во символов с строке)
-      if (titleVacancyArr.length >= 52) {
+      // добавить многоточие (simbolsCount - макс кол-во символов с строке)
+      if (titleVacancyArr.length >= simbolsCount) {
         titleVacancyArr = `${titleVacancyArr}...`;
       }
 
