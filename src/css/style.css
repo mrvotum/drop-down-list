@@ -1,21 +1,24 @@
 ul {
-  list-style: none;
   padding: 0;
+
+  list-style: none;
 }
 .drop-down-list__el:not(:last-child) {
   margin-bottom: 10px;
 }
 
 .wrapper {
-  width: 70%;
   position: absolute;
-  left: 50%;
   top: 50%;
-  transform: translate(-50%, -50%);
+  left: 50%;
   display: flex;
-  flex-direction: column;
   align-items: flex-start;
+  flex-direction: column;
+
+  width: 70%;
   padding: 50px;
+
+  transform: translate(-50%, -50%);
   font-family: sans-serif;
 }
 
@@ -26,8 +29,9 @@ ul {
 
 .drop-down-list__wrapper {
   width: 100%;
-  background-color: transparent;
   border-bottom: 1px solid #ed1846;
+
+  background-color: transparent;
 }
 .drop-down-list__wrapper:hover {
   cursor: pointer;
@@ -35,9 +39,10 @@ ul {
 
 .list__title {
   display: inline-block;
+  overflow: hidden;
+
   width: 100%;
   white-space: nowrap;
-  overflow: hidden;
 }
 
 .list__btn {
@@ -50,12 +55,14 @@ ul {
 .list__btn:before,
 .list__btn:after {
   position: absolute;
-  content: "";
-  background-color: #fff;
+  top: calc(25px / 2 - 2px / 2);
   width: 10px;
   height: 2px;
-  top: calc(25px / 2 - 2px / 2);
+
+  content: "";
   transition: 0.2s linear;
+
+  background-color: #fff;
 }
 .list__btn:before {
   left: 5px;
@@ -73,28 +80,32 @@ ul {
 }
 
 .drop-down-list__holder {
-  box-sizing: border-box;
   position: relative;
-  width: 100%;
+  top: 0;
+
   /*   padding: 1px 20px; */
   left: 0;
-  top: 0;
+
+  box-sizing: border-box;
+  width: 100%;
 }
 .drop-down-list--hidden {
   transform: scaleY(0); /*translateY(-100%);*/
-  opacity: 0;
   pointer-events: none;
+
+  opacity: 0;
 }
 
 .drop-down-list {
   position: absolute;
+  box-sizing: border-box;
+  width: 100%;
   margin: 0;
-  background-color: rgba(0, 0, 0, 0.1);
   padding: 10px 20px;
   transition: 0.5s;
-  width: 100%;
-  box-sizing: border-box;
   transform-origin: 50% 0;
+
+  background-color: rgba(0, 0, 0, 0.1);
 }
 
 /* checkbox */
@@ -104,40 +115,45 @@ ul {
 
 .checklist__label {
   position: relative;
-  margin-left: 30px;
   margin-top: 10px;
+  margin-left: 30px;
   cursor: pointer;
 }
 .checklist__label::before {
   position: absolute;
-  content: "";
-  top: 0px;
+  top: 0;
   left: -30px;
   width: 12px;
   height: 12px;
+  content: "";
   border: 1px solid #000;
-  background-color: transparent;
   border-color: #000;
+
+  background-color: transparent;
 }
 .checklist__label:hover::before {
-  border-color: #ec1847;
   cursor: pointer;
+
+  border-color: #ec1847;
 }
 
 .checkbox:checked + .checklist__label::before {
-  background-color: #ec1847;
   border-color: #ec1847;
+
+  background-color: #ec1847;
 }
 .checkbox:checked + .checklist__label::after {
   position: absolute;
-  content: "";
   top: 2px;
   left: -28px;
-  height: 2px;
   width: 7px;
-  border: 2px solid transparent;
-  border-left-color: #fff;
-  border-bottom-color: #fff;
+  height: 2px;
+
+  content: "";
   transform: rotate(-45deg);
+
+  border: 2px solid transparent;
+  border-bottom-color: #fff;
+  border-left-color: #fff;
 }
 /* checkbox */
