@@ -110,6 +110,7 @@ export default class Widget {
 
       // Добавляем пробел после запятой и удаляем запятую, если это последнее слово в строке
       this.vacancyArrContent.forEach((element) => {
+        // eslint-disable-next-line max-len
         for (let i = 0; i < element.length && i < simbolsCount && titleVacancyArr.length < simbolsCount; i += 1) {
           let el = element[i];
 
