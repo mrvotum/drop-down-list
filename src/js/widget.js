@@ -17,8 +17,8 @@ export default class Widget {
 
     for (let i = 0; i < elementsArr.length; i += 1) {
       listArr += `<li class="drop-down-list__el">
-            <input class="checkbox" type="checkbox" name="vacancy" value="vacancy_0${i}" data-id="vacancy_0${i}" data-vacancy="${elementsArr[i]}" id="vacancy_0${i}">
-            <label class="checklist__label" for="vacancy_0${i}">${elementsArr[i]}</label>
+            <input class="checkbox" type="checkbox" name="vacancy" value="vacancy_${i}" data-id="vacancy_${i}" data-vacancy="${elementsArr[i]}" id="vacancy_${i}">
+            <label class="checklist__label" for="vacancy_${i}">${elementsArr[i]}</label>
           </li>`;
     }
 
@@ -37,6 +37,8 @@ export default class Widget {
     setTimeout(() => {
       ulEl.classList.remove('drop-down-list--hidden');
     }, 50);
+
+    this.addCheckboxListener();
   }
 
   addListener() {
@@ -47,8 +49,6 @@ export default class Widget {
 
         // Удалим список
         setTimeout(() => {
-          this.addCheckboxListener();
-
           document.querySelector('[data-id=drop-down-list]').remove();
         }, 500);
       } else {
@@ -63,7 +63,7 @@ export default class Widget {
     });
   }
 
-  addCheckboxListener() {
+  gettingAllActiveCheckbox() {
     const checkboxes = document.querySelectorAll('input[name="vacancy"]:checked');
 
     if (checkboxes.length !== 0) {
@@ -93,7 +93,6 @@ export default class Widget {
     for (let i = 0; i < this.vacancyArrId.length; i += 1) {
       const element = this.vacancyArrId[i];
 
-      console.info(this.dropDownList__holder.querySelector(`[data-id=${element}]`));
       this.dropDownList__holder.querySelector(`[data-id=${element}]`).checked = true;
     }
   }
@@ -106,7 +105,6 @@ export default class Widget {
       this.listTitle.textContent = 'Выбрано больше 3-х вакансий';
     } else {
       let titleVacancyArr = '';
-      console.info('vacancyArrContent=');
 
       // Добавляем пробел после запятой и удаляем запятую, если это последнее слово в строке
       this.vacancyArrContent.forEach((element) => {
@@ -130,6 +128,20 @@ export default class Widget {
       }
 
       this.listTitle.textContent = titleVacancyArr;
+    }
+  }
+
+  // Добавить слушателей на каждый checkbox
+  addCheckboxListener() {
+    // Число элементов в списке
+    const vacancyCount = document.querySelector('[data-id=drop-down-list]').childElementCount;
+
+    for (let i = 0; i < vacancyCount; i += 1) {
+      const element = document.querySelector(`[data-id=vacancy_${i}]`);
+
+      element.addEventListener('change', () => {
+        this.gettingAllActiveCheckbox();
+      });
     }
   }
 }
